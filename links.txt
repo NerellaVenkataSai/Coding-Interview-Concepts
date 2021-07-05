@@ -1,0 +1,1 @@
+symbol                                           https://medium.com/intrinsic-blog/javascript-symbols-but-why-6b02768f4a5c
