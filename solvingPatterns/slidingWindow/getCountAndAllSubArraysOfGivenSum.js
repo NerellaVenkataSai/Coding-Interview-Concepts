@@ -1,0 +1,62 @@
+/**
+ *  return all subArrays on sum k
+ * 
+ *  This solution will solve different problems
+ *  1. count no. of subArrays to given sum
+ *  2. max contiguous subArray return of given sum
+ *  3. min contiguous subArray return of given sum
+ *  4. Return All subArrays of given sum
+ * 
+ */
+
+ function getAllSubArraysOfGivenSum(arr, sum) {
+   let count = 0;
+   let preFixSumOfVisitedIndex = {};
+   let subArrays = []
+   let currentIndexSum = 0;
+   for(let i = 0; i < arr.length; i++) {
+     currentIndexSum = currentIndexSum + arr[i];
+     preFixSumOfVisitedIndex[currentIndexSum] =  preFixSumOfVisitedIndex[currentIndexSum] ? preFixSumOfVisitedIndex[currentIndexSum] : i
+     
+     if(currentIndexSum === sum) {
+       count++;
+       subArrays.push(arr.slice(0, i + 1))
+     } else if(preFixSumOfVisitedIndex.hasOwnProperty(currentIndexSum - sum)){
+       const startingIndex = preFixSumOfVisitedIndex[currentIndexSum - sum] + 1
+       subArrays.push(arr.slice(startingIndex, i + 1))
+       count++;
+     }
+   
+    }
+    return {count, subArrays}
+ }
+
+
+ /**  reference link 
+  *   https://www.youtube.com/watch?v=HbbYPQc-Oo4
+  * 
+  *     [3, 4, 7, 2, -3, 1, 4, 2]  // sum 7
+  *      i
+  *   // approach to return only count no of sub arrays
+  *   // To return all subArrays use index as value in preFixSumOfVisitedIndex.
+  *   
+  *   *** Formula ****
+  *   // currentSumValue === sum || preFixSumOfVisitedIndex[currentSumValue - sum] --> count++
+  *   preFixSumOfVisitedIndex = {
+  *     3: 1,
+  *     7: 1,  // 7 === sum --> count = 1
+  *    14: 2,  // preFixSumOfVisitedIndex[14-sum] //true --> count = 2 --> count = 3 
+  *    16: 1,
+  *    13: 1,
+  *    18: 1,
+  *    20: 1,  // preFixSumOfVisitedIndex[20-sum] //true --> count = 4 
+  *                      
+  *   }
+  */
+
+  /**  Test inputs
+   *   [3, 4, -7, 2, 3, 2, 1, 4, 2] 
+   * */
+
+  console.log(getAllSubArraysOfGivenSum([3, 4, 7, 2, -3, 1, 4, 2], 7))
+
