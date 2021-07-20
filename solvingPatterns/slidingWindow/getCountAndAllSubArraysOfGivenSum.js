@@ -6,6 +6,7 @@
  *  2. max contiguous subArray return of given sum
  *  3. min contiguous subArray return of given sum
  *  4. Return All subArrays of given sum
+ *  5. Return First SubArray of given sum
  * 
  */
 
@@ -37,7 +38,7 @@
   * 
   *     [3, 4, 7, 2, -3, 1, 4, 2]  // sum 7
   *      i
-  *   // approach to return only count no of sub arrays
+  *   // This approach is to return only count no of sub arrays
   *   // To return all subArrays use index as value in preFixSumOfVisitedIndex.
   *   
   *   *** Formula ****
