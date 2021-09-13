@@ -1,0 +1,189 @@
+{
+   "Dynamic Form Component import": {
+		"prefix": "DF.import",
+		"body": ["import {",
+			"\tDynamicFormContainer,",
+			"\tDynamicFormContainerProps",
+			"\tFormField,",
+			"\tFormFieldType,",
+		"} from ${1:'components/common/form/dynamic-form/dynamic-form.container';}"],
+		"description": "Import Dynamic Form component"
+	},
+
+	"Dynamic Form Create": {
+		"prefix": "DF.create",
+		"body": ["const ${1:formName} = useForm({",
+		 "\tmode: 'onChange',",
+		 "\tdefaultValues: {},",
+	 "});"],
+		"description": "To Create Instance of react-hook-form"
+ },
+
+ "Dynamic Form Fields Basic Template": {
+	 "prefix": "DF.fields.template",
+	 "body": ["let formFieldsTemplate: DynamicFormContainerProps['fields'] = [",
+		"\t{",
+      "\t\tlabel: 'label',",
+      "\t\tname: 'name',",
+      "\t\ttype: FormFieldType.text,",
+      "\t\tdefaultValue: '',",
+    "\t},",
+    "\t{",
+      "\t\tlabel: 'label',",
+      "\t\tname: 'name',",
+      "\t\ttype: FormFieldType.switch,",
+		"\t},",
+		"\t// To align Fields in column / horizontal.",
+		"\t[",
+			"\t{",
+				"\t\tlabel: 'label',",
+				"\t\tname: 'name',",
+				"\t\ttype: FormFieldType.text,",
+				"\t\tdefaultValue: '',",
+				"\t\t//To allocate grid size for specific field",
+				"\t\tcolumnGridSize: 8,",
+			"\t},",
+			"\t{",
+				"\t\tlabel: 'label',",
+				"\t\tname: 'name',",
+				"\t\ttype: FormFieldType.switch,",
+				"\t\tcolumnGridSize: 4,",
+			"\t},",
+		"\t]",
+		"];"
+	 ],
+	 "description": "Dynamic Form Fields Schema"
+ },
+
+ "Dynamic Form TextField": {
+	 "prefix": "DF.field.text",
+	 "body": [
+		 "{",
+				"\tlabel: ${1:'label'},",
+				"\tname: ${2:'name'},",
+				"\ttype: FormFieldType.text,",
+				"\tdefaultValue: '',",
+			"},"
+		],
+	 "description": "Dynamic Form TextField"
+ },
+
+ "Dynamic Form TextField Mandatory": {
+		"prefix": "DF.field.text.mandatory",
+		"body": [
+			"{",
+				"\tlabel: ${1:'label'},",
+				"\tname: ${2:'name'},",
+				"\ttype: FormFieldType.text,",
+				"\trules: { required: { value: true, message: ${3:'This field is required'} } },",
+				"\tdefaultValue: '',",
+			"},"
+		],
+		"description": "Dynamic Form TextField Mandatory"
+	},
+
+	"Dynamic Form TextField Number": {
+		"prefix": "DF.field.text.number",
+		"body": [
+			"{",
+				"\tlabel: ${1:'label'},",
+				"\tname: ${2:'name'},",
+				"\ttype: FormFieldType.text,",
+				"\ttransformer: (e: any) => ${3:'Number Transformer Implementation'},",
+				"\trules: { required: { value: true, message: ${4:'This field is required'} } },",
+				"\tdefaultValue: '',",
+			"},"
+		],
+		"description": "Dynamic Form TextField Number"
+	},
+
+	"Dynamic Form AutoCompleteField": {
+		"prefix": "DF.field.autoComplete",
+		"body": [
+			"{",
+				 "\tlabel: ${1:'label'},",
+				 "\tname: ${2:'name'},",
+				 "\ttype: FormFieldType.autoComplete,",
+				 "\toptions: ${3:[{id: 'name', label: 'FirstName'}}],",
+				 "\tonValueChange: (option: any) => console.log(option),",
+				 "\tstartAdornment: () => (<InputAdornment position='start'> <SearchOutlined fontSize='small' /></InputAdornment>),",
+			 "},"
+		 ],
+		"description": "Dynamic Form AutoCompleteField in client side"
+	},
+
+	"Dynamic Form AsyncAutoCompleteField": {
+		"prefix": "DF.field.autoComplete.async",
+		"body": [
+			"{",
+				 "\tlabel: ${1:'label'},",
+				 "\tname: ${2:'name'},",
+				 "\ttype: FormFieldType.autoComplete,",
+				 "\tonValueChange: (option: any) => console.log(option),",
+				 "\tisAsync: true,",
+				 "\tapiFunction: ${3:'return api response(options) in this format Array<FilterFieldOption & Record<string, unknown>>'},",
+				 "\tstartAdornment: (<InputAdornment position='start'> <SearchOutlined fontSize='small' /></InputAdornment>),",
+				 "\tendAdornment: () => (<InputAdornment position='end'><CircularProgress color='inherit' size={20} /></InputAdornment>),",
+			 "},"
+		 ],
+		"description": "Dynamic Form Async AutoCompleteField type ahead search"
+	},
+
+	"Dynamic Form SelectField": {
+		"prefix": "DF.field.select",
+		"body": [
+			"{",
+				 "\tlabel: ${1:'label'},",
+				 "\tname: ${2:'name'},",
+				 "\ttype: FormFieldType.select,",
+				 "\toptions: ${3:[{id: 'name', label: 'FirstName'}}],",
+			 "},"
+		 ],
+		"description": "Dynamic Form SelectField"
+	},
+
+	"Dynamic Form MultiSelectField": {
+		"prefix": "DF.field.select.multi",
+		"body": [
+			"{",
+				 "\tlabel: ${1:'label'},",
+				 "\tname: ${2:'name'},",
+				 "\ttype: FormFieldType.select,",
+				 "\toptions: ${3:[{id: 'name', label: 'FirstName'}}],",
+				 "\tSelectProps: MultipleSelectProps as Record<string, unknown>,",
+				 "\tdefaultValue: [],",
+				 "\trules: {validate: (value: string[]) => value.length !== 0 || '${4:Please Select at least one option}'},",
+			 "},"
+		 ],
+		"description": "Dynamic Form SelectField with multiple values"
+	},
+
+	"Dynamic Form SwitchField": {
+		"prefix": "DF.field.switch",
+		"body": [
+			"{",
+				 "\tlabel: ${1:'label'},",
+				 "\tname: ${2:'name'},",
+				 "\ttype: FormFieldType.switch,",
+			 "},"
+		 ],
+		"description": "Dynamic Form SwitchField"
+	},
+
+	"Dynamic Form RadioField": {
+		"prefix": "DF.field.radio",
+		"body": [
+			"{",
+				 "\tlabel: ${1:'label'},",
+				 "\tname: ${2:'name'},",
+				 "\ttype: FormFieldType.radio,",
+				 "\tvalues: ['Female', 'Male', 'Unknown'],",
+				 "\talignRadioButtons: 'horizontal', //(optional) you can keep based on your requirement, by default it will align in vertical",
+				 "\tdefaultValue: 'Male',",
+				 "\trules: {validate: (value: string) => value !== 'Unknown' || 'Please Select proper gender'},",
+			 "},"
+		 ],
+		"description": "Dynamic Form SwitchField"
+	}
+
+}

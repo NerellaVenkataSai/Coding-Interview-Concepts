@@ -109,12 +109,16 @@ class BinarySearchTree {
       traverse(this.root);
       return data;
     }
+
+    getWidthArrayAtEachLevel(tree) {
+      
+    }
   }
 
-/**
- *           10                 In order    // 2 5 7 10 12 13 16
- *      5         13            pre order   //10 5 2 7 13 12 16
- *   2    7    12    16         post Order  //2 7 5 12 16 13 10
+/**  
+ *           10                 In order    // 2 5 7 10 12 13 16 // TODO without recursion
+ *      5         13            pre order   //10 5 2 7 13 12 16  // without recursion same approach as BFS instead of pushing child nodes use unshift for child node
+ *   2    7    12    16         post Order  //2 7 5 12 16 13 10  // TODO without recursion
  */
 
  const bst = new BinarySearchTree()
@@ -160,3 +164,49 @@ class BinarySearchTree {
 
   //IN ORDER
   console.log(bst.DFSInOrder())
+
+  // Width at each level
+  // reference https://www.udemy.com/course/coding-interview-bootcamp-algorithms-and-data-structure/learn/lecture/8547238#overview
+  /**  
+   * using BFS approach
+   *              10
+  *  -->     5         13          
+  *  -->  2    7    12    16
+  *      
+  *      counter: [0]
+  *      Array: []
+  *    
+  *      counter: [0] 
+  *      Array: [10,'s'] // 's denotes stopper at each level'
+  *      
+  *      counter: [1]
+  *      Array: ['s', 5, 13]
+  * 
+  *      counter: [1, 0]
+  *      Array: [5, 13, 's']
+  * 
+  *     counter: [1, 1]
+  *     Array: [13, 's', '2','7']
+  * 
+  *     counter: [1, 2]
+  *     Array: ['s', '2','7', 12, 16]
+  * 
+  *    counter: [1, 2, 0]
+  *    Array: [2','7', 12, 16, 's']
+  * 
+  *   counter: [1, 2, 1]
+  *    Array: [7, 12, 16, 's']
+  * 
+  *   counter: [1, 2, 2]
+  *    Array: [12, 16, 's']
+  * 
+  *   counter: [1, 2, 3]
+  *    Array: [16, 's']
+  * 
+  *   counter: [1, 2, 4]
+  *    Array: ['s']
+  * 
+  *   counter: [1, 2, 4]
+  *    Array: []
+  *   
+  */
