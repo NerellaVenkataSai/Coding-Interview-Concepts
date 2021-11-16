@@ -1,17 +1,13 @@
-const arr=[3,6,5,0,8,2,1,9]
+/**
+ *   Algos for 
+ *   MaxHeapOnGivenIndex
+ *   MaxHeapOnGivenArray
+ *   IncreaseKey
+ *   DecreaseKey
+ *   
+ * 
+ */
 
-console.log(Math.floor(arr.length/2))// no. of leaves Math.floor(N/2)
-
-console.log(Math.floor(arr.length/2) - 1) // no. of internal nodes Math.floor(N/2) - 1 
-
-// to get max no. of nodes based on height of complete binary tree (2*h+1)
-
-console.log(2*3+1)
-
-// to get no. of nodes at specific level (2 * h)
-
-console.log(2*1)
-console.log(2*2)
 
 // heapify with 0th index
 // Note: when you are doing heap from oth index all sub tree should be heapified
@@ -121,4 +117,35 @@ function ExtractMax(arr) {
  */
 
 console.log(ExtractMax([3,6,5,0,8,2,1,9]))
+
+//Increase key on heapified array
+function IncreaseKey(arr, i, key ) {
+  let heapArr = arr;
+//   let index = i;
+  heapArr[i] = key;
+
+  while(i > 0 && heapArr[Math.floor((i-1)/2)] < heapArr[i]) {
+    const parentIndexValue = heapArr[Math.floor((i-1)/2)];
+    heapArr[Math.floor((i-1)/2)] = heapArr[i];
+    heapArr[i] = parentIndexValue;
+    i = Math.floor((i-1)/2)
+  }
+  return heapArr;
+}
+
+console.log('Increasekey---', IncreaseKey([ 9, 8, 5, 6, 3, 2, 1, 0 ], 7, 10))
+
+
+// Decrease key on heapified array
+// As it's decrease key we can use maxheap algorithm to heapify sub tree
+
+function DecreaseKey(arr, i , key) {
+
+    arr[i] = key;
+
+    return MaxHeapifyOnGivenIndex(arr, i)
+
+}
+
+console.log('decreasekey--', DecreaseKey([ 9, 8, 5, 6, 3, 2, 1, 0 ], 1, 4))
 
