@@ -4,6 +4,7 @@
  *   MaxHeapOnGivenArray
  *   IncreaseKey
  *   DecreaseKey
+ *   HeapSort
  *   
  * 
  */
@@ -100,10 +101,11 @@ console.log(MaxHeapifyOnGivenIndex([2,3,4], 0))
 
 function ExtractMax(arr) {
     const MaxHeapArr = MaxHeapifyForGivenArray(arr);
+    const parentNode = MaxHeapArr[0];
     const lastLeaf = MaxHeapArr.pop()
     MaxHeapArr[0] = lastLeaf;
 
-    return MaxHeapifyOnGivenIndex(MaxHeapArr, 0);
+    return {root: parentNode , heapifiedArray:MaxHeapifyOnGivenIndex(MaxHeapArr, 0)};
 }
 
 /**
@@ -148,4 +150,29 @@ function DecreaseKey(arr, i , key) {
 }
 
 console.log('decreasekey--', DecreaseKey([ 9, 8, 5, 6, 3, 2, 1, 0 ], 1, 4))
+
+
+// HeapSort
+
+/**
+ *  1. Build Heap for given Array (MaxHeapForGivenArray)
+ *  2. ExtractMax till 0th index of given array
+ * 
+ */
+
+function HeapSort(arr) {
+
+    let sortedArray = [];
+    let updatedArray = arr;
+    while(updatedArray.length > 1) {
+       const extractMaxResult = ExtractMax(updatedArray);
+       sortedArray.push(extractMaxResult.root);
+       updatedArray = extractMaxResult.heapifiedArray;
+    }
+
+    return sortedArray.concat(updatedArray)
+
+}
+
+console.log('heapSort---', HeapSort([3,6,5,0,8,2,1,9]))
 
