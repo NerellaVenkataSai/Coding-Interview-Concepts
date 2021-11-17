@@ -226,12 +226,24 @@ console.log('heapInsert---', heapInsert([ 9, 8, 6, 5, 3, 2, 1, 0 ], 10 ))
  */
 
     function LastStoneWeight(arr) {
+        if(arr.length === 1) {
+            return arr;
+        }
         let heapifiedArray = MaxHeapifyForGivenArray(arr);
+         
+        if(arr.length === 2) {
+          const result = arr[0] - arr[1]
+          return result ? [result] : 0
+        }
         console.log('heapifiedArray---', heapifiedArray);
 
         let updatedArray = heapifiedArray;
         while(updatedArray.length >= 2) {
             console.log(updatedArray)
+            if(updatedArray.length === 2) {
+                const result = updatedArray[0] - updatedArray[1]
+                return result ? [result] : 0
+            }
             const firstMax = ExtractMax(updatedArray);
             const secondMax = ExtractMax(firstMax.heapifiedArray);
             if((firstMax.root - secondMax.root) > 0) {
@@ -239,7 +251,7 @@ console.log('heapInsert---', heapInsert([ 9, 8, 6, 5, 3, 2, 1, 0 ], 10 ))
               continue;
             }
 
-            updatedArray = secondMax.heapifiedArray;
+            updatedArray =  secondMax.heapifiedArray;
 
         }
         console.log(updatedArray)
@@ -264,5 +276,6 @@ console.log('heapInsert---', heapInsert([ 9, 8, 6, 5, 3, 2, 1, 0 ], 10 ))
  *  */    
 
 console.log(LastStoneWeight([2,7,4,1,8,1]))
-// console.log(LastStoneWeight([1,3]))
+console.log(LastStoneWeight([2,2]))
+console.log(LastStoneWeight([3,7,8]))
 
