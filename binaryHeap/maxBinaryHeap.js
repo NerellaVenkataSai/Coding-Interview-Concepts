@@ -108,3 +108,10 @@ console.log(heap.values)
 
 
 console.log([1,2,3].pop())
+
+
+export class Heap {
+    static abc() {
+        console.log('in abc');
+    }
+}

@@ -2,6 +2,8 @@
  *   Algos for 
  *   MaxHeapOnGivenIndex
  *   MaxHeapOnGivenArray
+ *   Insert
+ *   ExtractMax
  *   IncreaseKey
  *   DecreaseKey
  *   HeapSort
@@ -85,6 +87,9 @@ console.log(MaxHeapifyOnGivenIndex([2,3,4], 0))
  * */ 
 
    function MaxHeapifyForGivenArray(arr) {
+        if(arr && arr.length === 1) {
+            return arr
+        }
        const internalNode = Math.floor(arr.length/2) - 1;
 
        let arrTemp;
@@ -98,8 +103,27 @@ console.log(MaxHeapifyOnGivenIndex([2,3,4], 0))
 
    console.log(MaxHeapifyForGivenArray([3,6,5,0,8,2,1,9]))
 
+function heapInsert(arr, valToInsert) {
+    arr.push(valToInsert)
+    let values = arr;
+    function bubbleUp() {
+        let indx = values.length - 1;
+        let value = values[indx];
+        while(indx > 0) {
+            let parentIndx = Math.floor((indx - 1) / 2);
+            let parentValue = values[parentIndx];
+            if(parentValue >= value) break;
+            console.log(parentIndx)
+            values[parentIndx] = value;
+            values[indx] = parentValue;
+            indx = parentIndx;
+        }
+    }
+   bubbleUp();
+   return values;
+}
 
-function ExtractMax(arr) {
+function ExtractMax(arr = []) {
     const MaxHeapArr = MaxHeapifyForGivenArray(arr);
     const parentNode = MaxHeapArr[0];
     const lastLeaf = MaxHeapArr.pop()
@@ -175,4 +199,70 @@ function HeapSort(arr) {
 }
 
 console.log('heapSort---', HeapSort([3,6,5,0,8,2,1,9]))
+
+console.log('heapInsert---', heapInsert([ 9, 8, 6, 5, 3, 2, 1, 0 ], 10 ))
+
+/**
+ *  problems
+ */
+
+/**
+ *  Last Stone Weight
+ *  You are given an array of integers stones where stones[i] is the weight of the ith stone.
+
+    We are playing a game with the stones. On each turn, we choose the heaviest two stones and smash them together. Suppose the heaviest two stones have weights x and y with x <= y. The result of this smash is:
+
+    If x == y, both stones are destroyed, and
+    If x != y, the stone of weight x is destroyed, and the stone of weight y has new weight y - x.
+    At the end of the game, there is at most one stone left.
+
+    Return the smallest possible weight of the left stone. If there are no stones left, return 0.
+
+
+    Approach -- Use Heap
+    1. Build Heap
+    2. 2 times Extract Max and 1 Insert if we get some extra weight after substraction from two Max stones till last Element
+    3. last if any element left in array after all loop then return last element otherwise return 0
+ */
+
+    function LastStoneWeight(arr) {
+        let heapifiedArray = MaxHeapifyForGivenArray(arr);
+        console.log('heapifiedArray---', heapifiedArray);
+
+        let updatedArray = heapifiedArray;
+        while(updatedArray.length >= 2) {
+            console.log(updatedArray)
+            const firstMax = ExtractMax(updatedArray);
+            const secondMax = ExtractMax(firstMax.heapifiedArray);
+            if((firstMax.root - secondMax.root) > 0) {
+              updatedArray = heapInsert(secondMax.heapifiedArray, firstMax.root - secondMax.root);
+              continue;
+            }
+
+            updatedArray = secondMax.heapifiedArray;
+
+        }
+        console.log(updatedArray)
+
+        return updatedArray.length ? updatedArray : 0
+
+    }
+
+/**
+ *    [2,7,4,1,8,1] --> 
+ *    heapified Array = [8, 7, 4, 1, 2, 1]
+ *    (8-7)
+ *    [4,2,1,1,1]
+ *    (4-2)
+ *    [2,1,1,1]
+ *    (2-1)
+ *    [1,1,1]
+ *    (1-1)
+ *    [1]
+ * 
+ * 
+ *  */    
+
+console.log(LastStoneWeight([2,7,4,1,8,1]))
+// console.log(LastStoneWeight([1,3]))
 
