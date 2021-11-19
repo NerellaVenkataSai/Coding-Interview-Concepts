@@ -66,16 +66,18 @@ console.log(MaxHeapifyOnGivenIndex([2,3,4], 0))
  *    
  *   First heapify internal node sube trees and then heapify parental internal nodes
  * 
- *   [3,6,5,0,8,2,1,9]   ==>                    3
- *                                          6       5
- *                                       0    8   2   1
+ *   [3,6,5,0,8,2,1,9]   ==>                    3            h=0
+ *                                          6       5        h=1
+ *                                       0    8   2   1      h=2
  *                                    9
  * 
  *   To get internal nodes of tree from 0th index --> 0 to Math.floor(N/2) - 1
  * 
  *   To get no. of leaves of tree of 0th index  --> Math.floor(N/2)
  * 
- *   To get max no. of nodes based on height of complete binary tree (2*h+1)
+ *   To get max no. of nodes for complete binary tree based on height == Math.pow(2,h+1)-1
+ *   
+ *   To get max no. of nodes at height h = Math.pow(2,h)
  * 
  *   [3,6,5,0,8,2,1,9]       internal nodes = 0 to Math.floor(8/2)-1 = 0 to 3 ; leaves = Math.floor(8/2) = 4
  *    ------- -------
@@ -206,6 +208,7 @@ console.log('heapInsert---', heapInsert([ 9, 8, 6, 5, 3, 2, 1, 0 ], 10 ))
  *  problems
  */
 
+//problem 1
 /**
  *  Last Stone Weight
  *  You are given an array of integers stones where stones[i] is the weight of the ith stone.
@@ -279,6 +282,7 @@ console.log(LastStoneWeight([2,7,4,1,8,1]))
 console.log(LastStoneWeight([2,2]))
 console.log(LastStoneWeight([3,7,8]))
 
+// problem 2
 /**
  *  kth largest element in an array
  *  //https://www.youtube.com/watch?v=aXJ-p3Qa4TY&list=PLEJXowNB4kPyP2PdMhOUlTY6GrRIITx28&index=11
@@ -294,4 +298,16 @@ console.log(LastStoneWeight([3,7,8]))
  *     1. max heap --> Do ExtractMax for k times to get kth largest element
  *     2. min heap --> Do pop operation for (n-k)+1 to get kth largest element
  * 
+ */
+
+
+// problem 3
+/**
+ *   Top k Frequent elements in an array
+ *   https://www.youtube.com/watch?v=Wh3A29psE_Y&list=PLEJXowNB4kPyP2PdMhOUlTY6GrRIITx28&index=11
+ * 
+ *   steps:
+ *    1. do hash on value and frequency
+ *    2. Do maxHeap based on frequency 
+ *    3. Fo extractMax k times to get top k frequent elements from array
  */
