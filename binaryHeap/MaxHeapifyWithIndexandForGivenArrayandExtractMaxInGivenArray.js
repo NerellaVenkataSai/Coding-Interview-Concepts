@@ -279,3 +279,19 @@ console.log(LastStoneWeight([2,7,4,1,8,1]))
 console.log(LastStoneWeight([2,2]))
 console.log(LastStoneWeight([3,7,8]))
 
+/**
+ *  kth largest element in an array
+ *  //https://www.youtube.com/watch?v=aXJ-p3Qa4TY&list=PLEJXowNB4kPyP2PdMhOUlTY6GrRIITx28&index=11
+ *  [8,1,3,2,6,7]
+ * 
+ *  method:1 --> get 3rd largest
+ *     1. sort the array
+ *        if desc sort -- > [8,7,6,3,2,1] --> //answer a[k-1] -> a[3-1] = 6
+ *        if asc sort  -- > [1,2,3,6,7,8] --> // answer a[(n-k)+1] -> a[(5-3)+1] = 6
+ * 
+ *  methode:2 -- > max heap or min heap
+ *     
+ *     1. max heap --> Do ExtractMax for k times to get kth largest element
+ *     2. min heap --> Do pop operation for (n-k)+1 to get kth largest element
+ * 
+ */
