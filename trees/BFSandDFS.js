@@ -116,9 +116,10 @@ class BinarySearchTree {
   }
 
 /**  
- *           10                 In order    // 2 5 7 10 12 13 16 // TODO without recursion
- *      5         13            pre order   //10 5 2 7 13 12 16  // without recursion same approach as BFS instead of pushing child nodes use unshift for child node
- *   2    7    12    16         post Order  //2 7 5 12 16 13 10  // TODO without recursion
+ *           10                 In order    // 2 5 7 10 12 13 16 // check below for without recursion
+ *      5         13            pre order   //10 5 2 7 13 12 16  // check below for without recursion
+ *   2    7    12    16         post Order  //2 7 5 12 16 13 10  // check below for without recursion
+ *                              level order // 10 5 13 2 7 12 16 // same as BFS
  */
 
  const bst = new BinarySearchTree()
@@ -165,6 +166,95 @@ class BinarySearchTree {
   //IN ORDER
   console.log(bst.DFSInOrder())
 
+  //Pre-Order in iterative way
+  // ref https://www.youtube.com/watch?v=K2ybI-GEHSY&list=PLEJXowNB4kPzqcnf9CnjEcgP7r5LaSijB&index=1
+
+  /**
+   *   using BFS approach in specific order as below
+   *   1. First push the root element in stack
+   *   2. Take another empty preorder array to store values
+   *   3. Pop the root element from stack and push into preorder array
+   *   4. Push right child of root first into stack if exists and then left child of stack if exists
+   *   5. while loop above 3,4 steps until stack is empty.
+   * 
+   *           10
+  *       5         13          
+  *    2    7    12    16
+  * 
+  *    stack                  pre-order
+   *   [10]                   []
+   *   [13,5]                 [10]
+   *   [13,7,2]               [10,5]
+   *   [13,7]                 [10,5,2]
+   *   [13]                   [10,5,2,7]
+   *   [16,12]                [10,5,2,7,13]
+   *   [16]                   [10,5,2,7,13,12]
+   *   []                     [10,5,2,7,13,12,16]
+   */
+
+
+
+// post-order in iterative way
+  // ref https://www.youtube.com/watch?v=k21VKEM8OFY&list=PLEJXowNB4kPzqcnf9CnjEcgP7r5LaSijB&index=3
+  /**
+   *           10
+   *      5         13
+   *   2     7   12    16
+   * 
+   *   1. First push root into stack1
+   *   2. Take another stack2 to store popped values
+   *   3. pop the root element from stack1 and push the popped element into stack2
+   *   4. And push left and right child of popped root element if exists into stack1
+   *   5. loop 3,4 steps until stack1 is empty
+   *   6. Finally reverse stack2 to get post-ordered array
+   * 
+   *   stack1                             stack2
+   *   [10]                               []
+   *   [5,13]                             [10]
+   *   [5,12,16]                          [10,13]
+   *   [5,12]                             [10,13,16]
+   *   [5]                                [10,13,16,12]
+   *   [2,7]                              [10,13,16,12,5]
+   *   [2]                                [10,13,16,12,5,7]
+   *   []                                 [10,13,16,12,5,7,2]
+   * 
+   *   reverse stack2 -> [2,5,7,12,16,13,10]
+   */ 
+
+
+
+  // In-order in iterative way
+  // ref https://www.youtube.com/watch?v=5y_j0OqD7v8&list=PLEJXowNB4kPzqcnf9CnjEcgP7r5LaSijB&index=2
+  /**
+   *                    10
+   *              5           13
+   *           2     7     12    16
+   *                           1                     
+   *   1. Traverse to extreme left of tree and push each root into stack
+   *   2. Once you reached extreme left pop element for stack and push if there is any right child existing on it into sack. And push popped element into in-oder array
+   *   3. Repeat first step if there is any left child on newly pushed right child.
+   *   4. loop above steps until stack is empty
+   * 
+   *   stack                      in-order
+   *   [10]                       []
+   *   [10,5]                     []
+   *   [10,5,2]                   []
+   *   [10,5]                     [2]              // no child
+   *   [10,7]                     [2,5]            // popped and pushed right child into stack
+   *   [10]                       [2,5,7]          // no child
+   *   [13]                       [2,5,7,10]       // popped and pushed right child into stack
+   *   [13, 12]                   [2,5,7,10]       // pushed left child without popping last pushed right child
+   *   [13]                       [2,5,7,10,12]    // no child
+   *   [16]                       [2,5,7,10,12,13] // popped and pushed right child into stack
+   *   [16,1]                     [2,5,7,10,12,13]
+   *   [16]                       [2,5,7,10,12,13]
+   *   []                         [2,5,7,10,12,13,16]
+   *   
+   */
+
+
+
+
   // Width at each level
   // reference https://www.udemy.com/course/coding-interview-bootcamp-algorithms-and-data-structure/learn/lecture/8547238#overview
   /**  
@@ -210,3 +300,5 @@ class BinarySearchTree {
   *    Array: []
   *   
   */
+
+  

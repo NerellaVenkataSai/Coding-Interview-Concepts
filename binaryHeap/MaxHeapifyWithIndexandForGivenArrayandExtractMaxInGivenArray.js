@@ -71,15 +71,15 @@ console.log(MaxHeapifyOnGivenIndex([2,3,4], 0))
  *                                       0    8   2   1      h=2
  *                                    9
  * 
- *   To get internal nodes of tree from 0th index --> 0 to Math.floor(N/2) - 1
+ *   To get internal nodes of tree from 0th index --> 0 to Math.ceil(N/2) - 1
  * 
- *   To get no. of leaves of tree of 0th index  --> Math.floor(N/2)
+ *   To get no. of leaves of tree of 0th index  --> Math.ceil(N/2)
  * 
  *   To get max no. of nodes for complete binary tree based on height == Math.pow(2,h+1)-1
  *   
  *   To get max no. of nodes at height h = Math.pow(2,h)
  * 
- *   [3,6,5,0,8,2,1,9]       internal nodes = 0 to Math.floor(8/2)-1 = 0 to 3 ; leaves = Math.floor(8/2) = 4
+ *   [3,6,5,0,8,2,1,9]       internal nodes = 0 to Math.ceil(8/2)-1 = 0 to 3 ; leaves = Math.ceil(8/2) = 4
  *    ------- -------
  *   internal  leaves
  * 
@@ -92,7 +92,7 @@ console.log(MaxHeapifyOnGivenIndex([2,3,4], 0))
         if(arr && arr.length === 1) {
             return arr
         }
-       const internalNode = Math.floor(arr.length/2) - 1;
+       const internalNode = Math.ceil(arr.length/2) - 1;
 
        let arrTemp;
        for(let i=internalNode; i>=0; i--) {
