@@ -1,4 +1,8 @@
 
+//q: construct Binary Tree form PreOrder and InOrder and find post order
+// solution 
+//1. first construct binary tree
+//2. Do post order traversal algo on binary tree 
 
  function TreeNode(val, left, right) {
      this.val = (val===undefined ? 0 : val)
