@@ -77,6 +77,22 @@ class BinarySearchTree {
       return data;
     }
 
+    leftViewOfBT() {
+        let node = this.root;
+        let queue = [];
+        let data = [];
+        data.push(node.value);
+        node = this.root.left;
+        queue.push(node);
+        while(queue.length) {
+          node = queue.shift()
+          data.push(node.value);
+          if(node.left) queue.push(node.left);
+          if(node.right) queue.push(node.right);
+        }
+        return data;
+    }
+
     DFSPreOrder() {
       var data = [];
       function traverse(node) {
@@ -153,6 +169,17 @@ class BinarySearchTree {
   */
 
   console.log(bst.BFS())
+
+
+  // leftView of Tree
+  console.log(bst.leftViewOfBT())
+
+  //How to validate tree is BST or not
+  /**
+   * 1. all left nodes should be less than root node
+   * 2. all right nodes should be grater than root node
+   * 3. keeping these two rules in mind we can use leftView and right view algos to validate BST
+   *  */ 
 
   // PREORDER
 
