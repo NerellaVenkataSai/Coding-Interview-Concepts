@@ -1,0 +1,21 @@
+two pointer problems
+1. moveZeros
+2. merge two sorted lists
+3. searchInSortedArrayOfUnknownSize
+4. sortArray || sortSquaresOfArrayOnSortedArray
+
+
+DP
+1. productOfArrayExceptSelf
+
+
+formulaes
+1. productOfArrayExceptSelf
+2. single Number --> 2 ^ 2
+3. rotateArray str + str --> search
+4. Missing Number In Array --> n(n+1)/2 - sumOfArray
+
+hashing
+1. twoSum
+2. get all contigous SubArray for given sum
+3. duplicates in array
