@@ -2,8 +2,11 @@ two pointer problems
 1. moveZeros
 2. merge two sorted lists
 3. searchInSortedArrayOfUnknownSize
-4. sortArray || sortSquaresOfArrayOnSortedArray
+4. sortArray || sortSquaresOfArrayOnSortedArray *** Note: (two pointer sort works only on sorted arrays for normal unsorted arrays use sort algo)
+https://medium.com/swlh/two-pointer-technique-solving-array-problems-at-light-speed-56a77ee83d16
 
+stacks
+1. mergeIntervals ****
 
 DP
 1. productOfArrayExceptSelf
@@ -12,10 +15,19 @@ DP
 formulaes
 1. productOfArrayExceptSelf
 2. single Number --> 2 ^ 2
-3. rotateArray str + str --> search
 4. Missing Number In Array --> n(n+1)/2 - sumOfArray
 
 hashing
 1. twoSum
 2. get all contigous SubArray for given sum
 3. duplicates in array
+
+matrix
+1. spiral matrix **
+2. rotateImageTo90Degrees **
+3. Trnaspose Matrix
+3. setMatrixZeros
+
+2D Array
+1. pascals triangle
+2. getMaxSumFromTraingle
