@@ -1,0 +1,24 @@
+sequence of tree problems
+1. Construct binary tree from array
+   1. construct preOrder tree from post and inorder
+   2. construct postOrder tree from pre and inorder (1. binary tree 2. post order alogo)y
+
+2. Sum Of all Nodes in a tree from root to leaf
+    1. get all paths from root to leaf
+    2. least common anscestor
+    3. is cousins
+    4. isValid sequence from root to leaf
+
+
+3. maxPathSumOfBinaryTree (revision ***)
+
+
+
+
+BST from array
+1. DFS
+2. BFS
+3. preOrder (recursive and iteratively)
+4. postOrder (recursive and iteratively)
+5. inOrder (recursive)
+6. width at each level of tree
