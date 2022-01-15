@@ -1,0 +1,166 @@
+/**1. what is nodejs (not a language)
+A. Its a Javascript runtime environment that executes JS code outside of browser.
+   It's built on chrome 8 engine
+   event-driven, non-blocking I/o, highly scalable
+
+2. node LTS
+A. LTS : Long Term Support has atleast 18 months support and maintainance(recommended)
+
+3. Event Driven
+A. Event-driven programming is a programming paradigm in which the flow of 
+   the program is determined by events such as user actions (mouse clicks, key presses), 
+   sensor outputs, or messages from other programs/threads.
+   In simple words Application acts on events
+
+4. Single Threaded:
+A. Node.js is single-threaded – from a developer’s point of view. 
+   It means that you don’t have to deal with threads and synchronizing them, 
+   Node.js abstracts this complexity away. Everything except your code is executing in parallel.
+
+5. Async Programming:
+A. Async pattern can only be achieved with function being first-class citizen of language.
+   A Function that take other function as argument is Higher Order Function.
+   Simple Example:
+   const numbers = [2,4,1,5,4]
+    function isBiggerThanTwo (num) {
+    return num > 2
+    }
+    numbers.filter(isBiggerThanTwo)
+   const fs = require('fs')
+
+   node aync example:
+    console.log('start reading a file...')
+
+    fs.readFile('file.md', 'utf-8', function (err, content) {
+    if (err) {
+        console.log('error happened during reading the file')
+        return console.log(err)
+    }
+
+    console.log(content)
+    })
+
+    console.log('end of the file')
+    //o/p
+    start reading a file...
+    end of the file
+    error happened during reading the file
+
+4. How all Async opertations are scheduled
+A. event loop is in hear of node.js/javascript it is responsible for scheduling async operations
+   https://www.youtube.com/watch?v=8aGhZQkoFbQ&t=7s
+
+   single thread will handle multiple requests, 
+   event queue will be monitoring when the request is done it will remove that request from event-queue
+
+5. setTimeout vs setImmediate vs process.nextTick
+A. setImmediate is same as setTimeout 
+   the only difference is setImmediate will be given more priority in callback queue compared to setTimeout
+   Example
+   setTimeout(() => console.log('in ST'), 0)
+   setImmediate(() => console.log('SI'))
+   o/p 'SI' 'in ST'
+
+   process.nextTick() (refer screenshot)
+   https://www.youtube.com/watch?v=_-AVeo3tX-0
+   It's not belonging to event loop it's exclusively provided by node
+   It runs after completion of each phase in event loop
+   It gives more priority in event loop (so we can call it as priority queue)
+   edge cases:
+   In all other phases of callback queues we have limitation of callbacks execution
+   But in priority queue(process.nextTick) there is no limitation.
+   So it runs all callBacks no matter how many where it blocks all other phases. so be careful.
+
+6. What are the advantages of using promises instead of callbacks?
+   Promises are the ideal choice for handling asynchronous operations in the simplest manner. 
+   They can handle multiple asynchronous operations easily and provide better error handling 
+   than callbacks and events. In other words also, we may say that, 
+   promises are the ideal choice for handling multiple callbacks at the same time, 
+   thus avoiding the undesired callback hell situation.
+
+7. sample creation of server
+   var http = require("http");
+    http.createServer(function (request, response) {
+    response.writeHead(200, {'Content-Type': 'text/plain'});
+    response.end('Hello World\n');
+    }).listen(3000);
+
+8. What are child processors in node. and how many are there ?
+   4 child processors
+   exec, exec-file, spawn, fork
+   https://www.youtube.com/watch?v=bbmFvCbVDqo&list=PLdHg5T0SNpN2c0j8ggRFUU4iRxVznozWt&index=22
+
+   1. exec:
+    used to exec system commands like ls -lh, pwd like these small commands
+   2. exec-file
+    used to exec system commands written in file
+   both exec and exec-file has buffered limits
+   3. spawn 
+    we can run bash script with no buffered limits it runs in streams
+   4. fork
+    https://www.youtube.com/watch?v=7cFNTD73N88&list=PLdHg5T0SNpN2c0j8ggRFUU4iRxVznozWt&index=23
+    by default node uses single thread means single process. So large computation will be execute slow
+    To leverage child process and use high cpu for large computation we need to use child process.
+
+ 9. What tools can be used to assure consistent code style?
+    ESLint can be used with any IDE to ensure a consistent coding style which further helps in maintaining the codebase. 
+
+ 10. If Node.js is single threaded then how does it handle concurrency?
+    The main loop is single-threaded and all async calls are managed by libuv library.
+    This is because libuv sets up a thread pool to handle such concurrency. 
+    How many threads will be there in the thread pool depends upon the number of cores but you can override this
+
+ 11. How does Node.js overcome the problem of blocking of I/O operations?
+    event loop
+
+ 12. Node stream
+     difference between streams and buffered
+     buffered: when transferring data between source to destination. first it will store in buffer and then transfer to destination
+     stream: It wont store in any buffer instead it will transfer contionously in stream bit by bit 
+     until it transfer whole data
+
+     Readable Stream: (event-listeners --> data, error, end)
+     https://www.youtube.com/watch?v=_pqv06ySvuk&list=PLrwNNiB6YOA18XANsFe0CnizlhYKjJT0f&index=2
+     readble stream reads the data chunck by chunck until it reads total data
+     while stream in flow we have methods(event-listeners) to pause the stream and resume or get the chunk based on our command
+
+     writable stream: (event-listeners -->  'drain')
+     https://www.youtube.com/watch?v=FS2OWxS5P_E&list=PLrwNNiB6YOA18XANsFe0CnizlhYKjJT0f&index=3
+     while readable stream reads data in chunk writable stream writes data in chunk to destination.
+     const result = writableStream.write(chunk)
+     here result will give true or false whether bucket is full or not.
+     backpressure:
+     If bucket is full result is false then we will stop readStream and resumes it once writableStream drains
+     writableStream.on('drain', () => {
+        readableSteam.resume()
+     })
+
+     Pipe: 
+     https://www.youtube.com/watch?v=rQXaDH__Suk&list=PLrwNNiB6YOA18XANsFe0CnizlhYKjJT0f&index=4
+     pipe is wrapper of readable and writable logic. where we can write data from readable stream using pipe. we no need to use all the logic written in readable and witabled streams
+     //readableSteam.pipe(writeStream).on('error', console.log(error))
+
+     Duplex:
+     https://www.youtube.com/watch?v=rQXaDH__Suk&list=PLrwNNiB6YOA18XANsFe0CnizlhYKjJT0f&index=4
+     Duplex is intermediate state between readable and writable stream. It wont transform any data.
+     But it will be useful if we want to check whats happening in between readable and writable streams like:
+     what's the size of chunk, if you want to delay between readable and writable operations(throttle)etc we can use Duplex stream 
+
+     Trnaform Stream:
+     https://www.youtube.com/watch?v=rQXaDH__Suk&list=PLrwNNiB6YOA18XANsFe0CnizlhYKjJT0f&index=4
+     Transform streams used to tranform data while streaming data between readable and writable streams.
+
+     HTTP Stream:
+     Using above all stream concepts we will send stream data to UI
+
+
+
+     
+
+
+   
+
+
+
+
+*/
