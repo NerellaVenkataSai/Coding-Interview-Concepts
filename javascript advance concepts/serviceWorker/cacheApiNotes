@@ -1,0 +1,19 @@
+Cache 
+The Cache API ships with several methods to perform the following (CRUD) operations
+https://www.youtube.com/watch?v=Gu0t2EW2kfU&list=PLyuRouwmQCjl4iJgjH3i61tkqauM-NTGj&index=2
+https://gist.github.com/prof3ssorSt3v3/ec11c6dfd64e7700b2918b3a52f4ddd4
+https://blog.logrocket.com/javascript-cache-api/
+
+The Cache API provides a mechanism for storing network requests and retrieving their corresponding responses 
+during run-time. It can be used in the absence of an internet connection (or presence of a flaky one) 
+and this makes it integral to the building of progressive web applications 
+(fully optimised web applications that work offline like native applications)
+
+caching can play an important role in the workflow of service workers. 
+
+Usage:
+The Cache API is a great choice for caching URL-addressable resources, that is, you should use the Cache API when you work with network resources that are necessary to load your application. If your application deals with lots of data, you may cache the data that the user will most likely need on page load. These resources may include file-based content, assets, API responses, and web pages.
+
+*** Important Note ***
+For the storage of significant amounts of structured data (including files/blobs), you should ideally use the IndexedDB API.
+

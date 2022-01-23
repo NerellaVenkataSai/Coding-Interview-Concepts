@@ -1,0 +1,37 @@
+Infinite Scroll
+
+IntersectionObserver *** Important concept(lazy loading)
+
+Total concept of infinite scroll and implementation
+https://medium.com/walmartglobaltech/infinite-scrolling-the-right-way-11b098a08815
+
+1. Root Element
+2. Sentinel
+3. Recycle DOM Nodes
+4. sliding windows
+
+Root Element we will use to observe our sentinal when sentinal will intersect with Root Element
+to fetch data from API or fetch from cache. Root Element is concept from IntersectionObserver.
+
+Sentinals (TOP and BOTTOM Sentinals)
+Sentinal are anchor elements to make changes. we use top and bottom sentinals whever it intersect with
+Root Elment. Top Sentinal is easy we will save the popped element in cache(reddis). Bottom sentinal
+first we will check in cache if it's no there we will fetch new data from API
+
+Recycle DOM Node
+To optimize the perfomance we will maintain statuc DOM ELEMENTS like 20 divs.
+To optimize reflow and repaint instead of addind new elements and do reflow which is expensive
+we will replace the existing DOM data with new content which is very perfomant
+
+Sliding Window
+ refers to the areas between two indices when we scroll up or down, equal to the amount of displayed DOM nodes. By having this sliding window, we only need to display a fixed number of data while keeping the rest away from the actual rendered page.
+
+In JS
+    call api when we reach to bottom of the screen
+    caluclate when we reached to the bottom
+    scrollY + InnerHeight >= ScrollHeight (call api to next elements)
+https://www.youtube.com/watch?v=xHm6AbNwAw8
+
+In React
+We can use ref and useCallBack and IntersectionObserver to call API when it reaches bottom of screen
+https://www.youtube.com/watch?v=NZKUirTtxcg

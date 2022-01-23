@@ -1,0 +1,38 @@
+Service Workers
+
+https://www.youtube.com/watch?v=NJRu3pmmN-4&list=PLyuRouwmQCjl4iJgjH3i61tkqauM-NTGj
+https://gist.github.com/prof3ssorSt3v3/337e9a19e03b0adb243e7e53b9e42b08
+https://developers.google.com/web/fundamentals/primers/service-workers
+
+ Rich offline experiences, periodic background syncs, push notifications—functionality 
+ that would normally require a native application—are coming to the web. 
+ Service workers provide the technical foundation that all these features rely on.
+
+A service worker is a script that your browser runs in the background, separate from a web page, opening the door to features that don't need a web page or user interaction. Today, they already include features like push notifications and background sync. In the future, service workers might support other things like periodic sync or geofencing.
+
+We can use service workers to intercept in network calls and managing cache of responses.
+
+LifeCycle of service Worker refer image 1
+1. Installing
+  To install service worker to web page we need to register service worker. 
+  Once you register service worker browser will install service worker in background.
+
+ 
+
+  ***Important Note***
+  1.Regedtration of service worker is done using navigator object in javascript(ref 2 link)
+  2.In localhost it can be used using http but once app is deployed serviceWorker can only be used
+  Using https
+
+  3.Once service worker is registered it will registered based on domain. so same service worker will
+  be used accross different tabs for web app. so we can comminicate between two tabs using service worker.
+
+2. Activation
+When installed, the activation step will follow and this is a great opportunity for handling any management of old caches.
+ After installing service worker it will have all controll on all pages under its (scope). refer 2 link 
+
+3. fetch
+
+4. Message
+
+

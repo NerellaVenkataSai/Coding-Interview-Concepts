@@ -1,7 +1,4 @@
 TODO
-
-1. largest number formed from array
-2. equilibrium of an array
 3. search in rotated array
 4. rearrange array alternatively
 5. Longest common prefix
@@ -13,6 +10,7 @@ TODO
 two pointer problems
 1. moveZeros
 2. merge two sorted lists
+3. container with most water
 3. searchInSortedArrayOfUnknownSize
 4. sortArray || sortSquaresOfArrayOnSortedArray *** Note: (two pointer sort works only on sorted arrays for normal unsorted arrays use sort algo)
 https://medium.com/swlh/two-pointer-technique-solving-array-problems-at-light-speed-56a77ee83d16
@@ -43,3 +41,7 @@ matrix
 2D Array
 1. pascals triangle
 2. getMaxSumFromTraingle
+
+Intervals
+1. Merge Intervals
+2. Non-Overlapping Intervals

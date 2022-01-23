@@ -153,7 +153,65 @@ A. setImmediate is same as setTimeout
      HTTP Stream:
      Using above all stream concepts we will send stream data to UI
 
+ 
+ 13. SSL (Secure Socket Layer)(https://----): we can generate secure certificate using OpenSSl       library and attach then createServer in node.
 
+
+ 14. Cookies:
+   https://github.com/trulymittal/cookies-tasty/blob/master/app.js
+   https://www.youtube.com/watch?v=RNyNttTFQoc&list=PLdHg5T0SNpN2c0j8ggRFUU4iRxVznozWt&index=6
+   It's one type of storage
+   1. Local Storage
+   2. Session Storage
+   3. Cookie Storage
+
+   // cookie syntax
+   we can access cookie in both the ways web to server and server to web
+   we can access cookie in client using document.cookie but not recommended
+   // server to web
+   app.get('/set-cookie', (req, res) => {
+   // res.setHeader('set-cookie', 'foo=bar')
+   res.cookie('foo', 'bar', {
+      // maxAge: 5000,
+      // expires: new Date('26 July 2021'),
+      // httpOnly: true, // it will block accessing cookie from client side
+      // secure: true,
+      // domain: 'example.com',
+   })
+   // res.cookie('fizz', 'buzz')
+   res.send('Cookies are set')
+   })
+
+   // web to server
+   app.get('/get-cookie', (req, res) => {
+   console.log(req.cookies)
+   res.send(req.cookies)
+   })
+
+   app.get('/del-cookie', (req, res) => {
+   res.clearCookie('fizz')
+   res.send('Cookie has been deleted')
+   })
+
+
+15. How to schedule jobs in node
+   https://www.youtube.com/watch?v=StkFajPnd7w&list=PLdHg5T0SNpN2c0j8ggRFUU4iRxVznozWt&index=9
+   we can use cron jobs to schedule event based on expression whether it's day or minute or second
+   https://crontab.guru/
+   const schedule = require('node-schedule')
+   schedule.scheduleJob('*/5 * * * *', () => {
+      console.log('job for every 5 mins')
+   })
+
+16. How you will scale node.js
+    https://www.youtube.com/watch?v=9RLeLngtQ3A&list=PLdHg5T0SNpN2c0j8ggRFUU4iRxVznozWt&index=24
+    using cluster module we can scale up node.js
+    As we know node is single threaded by using cluster we can create multiple child thread process
+    and increase the scalabilty and zero downtime. If one process is down other process will be created automatically.
+
+TODO
+// caching
+// URL shortening
 
      
 
