@@ -7,6 +7,28 @@
  *   IncreaseKey
  *   DecreaseKey
  *   HeapSort
+ * 
+ *   Formulas
+ * 
+ *   leftChild = 2*index+1
+ *   rightChild = 2*index+2
+ *   To get internal nodes of tree from 0th index --> 0 to Math.ceil(N/2) - 1
+ * 
+ *   To get no. of leaves of tree of 0th index  --> Math.ceil(N/2)
+ * 
+ *   To get max no. of nodes for complete binary tree based on height == Math.pow(2,h+1)-1
+ *   
+ *   To get max no. of nodes at height h = Math.pow(2,h)
+ * 
+ *   To get parent index from child index Math.floor((indx - 1) / 2)
+ * 
+ *   Sequence order
+ *   1. MaxHeapOnGivenIndex
+ *   2. ExtractMax
+ *   3. HeapSort
+ *   4. Heap Insert
+ *   5. Increase Key
+ *   6. Decrease key
  *   
  * 
  */
