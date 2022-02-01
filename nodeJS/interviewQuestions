@@ -158,12 +158,47 @@ A. setImmediate is same as setTimeout
 
 
  14. Cookies:
+   https://www.youtube.com/watch?v=rdVPflECed8  ********* Theritical concept of cookie
    https://github.com/trulymittal/cookies-tasty/blob/master/app.js
    https://www.youtube.com/watch?v=RNyNttTFQoc&list=PLdHg5T0SNpN2c0j8ggRFUU4iRxVznozWt&index=6
+
+   Cookie can be accessed between client and server
+   1. Cookie is mainly used to identify users machine
+   2. On top of that new features are added to cookie in these days like monitoing users activity in good way or some bad cokkie can breach your privacy
+   How cookie works ? 
+   1. On load of any application cookie popup promts to accept cookie once you accept it will store unique cookie id in hardware of computer.
+   2. This ID will track your activity on that website from all over application.
+   Examples common usecases:
+   What all items kept in cart
+   Based on our activity it will show related products
+   send coupon code based on our activity
+   
+   There are two type of cookies:
+   1. normal cookie: which only tracks website related to that cookie
+   2: Third Party Cookie:
+   Example 
+   if in website there are like button and share button which is in talk with facebook. where facebook send cookies and collect cookies and share related news feed in facebook. 
+   So to conclude there are pros and cons of using cookies.
+
+   pros:
+   user experience will be enjoyful by using cookies
+   cons:
+   breaching of users data
+
    It's one type of storage
    1. Local Storage
    2. Session Storage
    3. Cookie Storage
+
+   similarities of three storages:
+   https://www.youtube.com/watch?v=GihQAC1I39Q
+   1. All storages stored in browser and is dependant on browser means cookies in chrome can't be accessed in firefox
+   2. All storages stored based on user in their local so other user of that site  can't use our storage as they are present in out local
+   3. User can delete storage at any point of time
+
+   differences between storages:
+   https://www.youtube.com/watch?v=GihQAC1I39Q
+
 
    // cookie syntax
    we can access cookie in both the ways web to server and server to web
@@ -208,6 +243,10 @@ A. setImmediate is same as setTimeout
     using cluster module we can scale up node.js
     As we know node is single threaded by using cluster we can create multiple child thread process
     and increase the scalabilty and zero downtime. If one process is down other process will be created automatically.
+
+
+17. Caching
+    Basic concept of caching is to make the application faster by saving the data(which is not frequently changes) in cache and loading that data on requirement without making call to server.
 
 TODO
 // caching

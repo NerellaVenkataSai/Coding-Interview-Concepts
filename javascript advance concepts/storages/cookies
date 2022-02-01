@@ -1,0 +1,55 @@
+ Cookies:
+   https://www.youtube.com/watch?v=rdVPflECed8  ********* Theritical concept of cookie
+   https://github.com/trulymittal/cookies-tasty/blob/master/app.js
+   https://www.youtube.com/watch?v=RNyNttTFQoc&list=PLdHg5T0SNpN2c0j8ggRFUU4iRxVznozWt&index=6
+
+   Cookie can be accessed between client and server
+   1. Cookie is mainly used to identify users machine
+   2. On top of that new features are added to cookie in these days like monitoing users activity in good way or some bad cokkie can breach your privacy
+   How cookie works ? 
+   1. On load of any application cookie popup promts to accept cookie once you accept it will store unique cookie id in hardware of computer.
+   2. This ID will track your activity on that website from all over application.
+   Examples common usecases:
+   What all items kept in cart
+   Based on our activity it will show related products
+   send coupon code based on our activity
+   
+   There are two type of cookies:
+   1. normal cookie: which only tracks website related to that cookie
+   2: Third Party Cookie:
+   Example 
+   if in website there are like button and share button which is in talk with facebook. where facebook send cookies and collect cookies and share related news feed in facebook. 
+   So to conclude there are pros and cons of using cookies.
+
+   pros:
+   user experience will be enjoyful by using cookies
+   cons:
+   breaching of users data
+
+// cookie syntax
+   we can access cookie in both the ways web to server and server to web
+   we can access cookie in client using document.cookie but not recommended
+   // server to web
+   app.get('/set-cookie', (req, res) => {
+   // res.setHeader('set-cookie', 'foo=bar')
+   res.cookie('foo', 'bar', {
+      // maxAge: 5000,
+      // expires: new Date('26 July 2021'),
+      // httpOnly: true, // it will block accessing cookie from client side
+      // secure: true,
+      // domain: 'example.com',
+   })
+   // res.cookie('fizz', 'buzz')
+   res.send('Cookies are set')
+   })
+
+   // web to server
+   app.get('/get-cookie', (req, res) => {
+   console.log(req.cookies)
+   res.send(req.cookies)
+   })
+
+   app.get('/del-cookie', (req, res) => {
+   res.clearCookie('fizz')
+   res.send('Cookie has been deleted')
+   })

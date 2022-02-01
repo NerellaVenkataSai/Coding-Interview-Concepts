@@ -1,0 +1,13 @@
+Similaritites
+
+1. Both are stored only in browser
+2. There wont be any interaction with server
+
+Differences
+1. Local Storage has more storage capacity compared to session storage.
+2. Local storage can be accessed accross tabs untill storage is cleared.
+3. Local storage wont br cleared until user clears out
+
+Session Storage:
+1. will be persisted only for that seession menas only for that tab
+2. It will be cleared once that tab is closed.
