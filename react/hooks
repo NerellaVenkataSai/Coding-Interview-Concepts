@@ -1,0 +1,34 @@
+UseMemo:  
+will memoize the returned value and persist referenctial equality between 
+different render cycles.
+
+Edge cases: 
+We should not use UseMemo for small things for example on primitive values. As 
+UseMemo deals with cost of memory it leads to an issue
+
+Usecases: 
+If you have any expensive function which is getting called on every state change we can use UseMemo
+with corresponding dependancy for that expensive function.
+
+
+useCallBack: 
+Alsmost same syatax as useMemo but useCallBack return function unlike value in useMemo.
+useCallBack will persisit reference between different render cycles until dependancy got changed for that
+callBack.
+
+useCases:
+if you are sending callBack as prop to child component and using in useEffect dependancy then we can use useCallBack to avoid unecessary calls in child component.
+
+useRef:
+we can use useRef to store same ref across different render cycles, 
+and we can use useRef on DOM to get ref to that particular for that DOM 
+
+useLayoutEffect:
+useLayoutEffect will trigger synchronosly between when react racalculates the DOM and paint it.
+useLayoutEffect will call before paint so if we want to do any DOM manipulations we can do in this hook.
+
+Th major difference between useEffect and UseLayoutEffect is
+useEffect is async and it will be called after paint
+useEffect is sync and it will be called before paint
+
+

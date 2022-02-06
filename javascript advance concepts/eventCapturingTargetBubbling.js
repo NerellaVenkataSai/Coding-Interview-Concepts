@@ -61,6 +61,9 @@
  *   to event capture we need to enable it in eventListener in below way
  * 
  *   elem.addEventListener(..., {capture: true})// default capture: false
+ * 
+ *   const el = document.getElementById("outside");
+     el.addEventListener("click", modifyText, false);
  *   
  * 
 */

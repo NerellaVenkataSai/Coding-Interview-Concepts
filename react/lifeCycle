@@ -1,0 +1,8 @@
+1.Mounting
+2.Constructor
+3.Render
+4.ComponentDidMount (useEffect with empty array)
+5.ComponentDidUpdate (useEffect with some dependency array)
+6.ComponentWillUnMount (useEffect with return)
+7.ComponentShouldUpdate (UseMemo)
+

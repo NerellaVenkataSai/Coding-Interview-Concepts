@@ -9,7 +9,7 @@
  *   L     M     R
  * 
  *  if(Target < Medium) {
- *      if(L < Target) {
+ *      if(Target < L) {
  *         //right sorted
  *      }
  *      else {
