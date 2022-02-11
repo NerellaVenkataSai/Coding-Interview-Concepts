@@ -1,0 +1,3 @@
+The only one reason when one needs to pass props to super() 
+is when you want to access this.props in constructor:
+

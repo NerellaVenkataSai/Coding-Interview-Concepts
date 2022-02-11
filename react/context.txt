@@ -1,0 +1,12 @@
+export const CpxEcheckinStateContext = createContext({});
+
+Parent Component render
+
+<CpxEcheckinStateContext.Provider
+  value={{name: ''}}
+>
+<ChildComponent/>
+</CpxEcheckinStateContext.Provider>
+
+ChildComponent
+const {name} = useContext(CpxEcheckinStateContext)

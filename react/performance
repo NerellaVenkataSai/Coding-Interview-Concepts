@@ -1,0 +1,5 @@
+useMemo
+PureComponents
+both comes with shallow comparision
+
+react profiler to do perormance testing

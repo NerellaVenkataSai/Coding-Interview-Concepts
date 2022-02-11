@@ -1,0 +1,126 @@
+https://medium.com/technofunnel/working-with-react-pure-components-166ded26ae48#:~:text=Pure%20Components%20in%20React%20are,component%20is%20not%20re%2Drendered.
+PureComponents is concept of PureFunction in javascript
+
+//PureFunction
+When you are not mutating any state in global and returning value based on logic only in function Scope
+. Then it's a pure function
+
+function addData(firstInput, secondInput) {
+  return firstInput + secondInput;
+}
+
+var getData = addData(1, 2);
+
+addData is PureFunction as it's not dealing any of global scope.
+
+Advantages:
+Pure Functions have a huge performance impact during execution on the Browser.
+If we call the multiple times with same parameter it will return previous memoized value. 
+Instead of going through all the logic present in that function.
+
+
+PureComponent:
+In React it comes with PureComponent which optimizes renderings based on props and state (by doing shallow comparision)
+So it will check the state and props is changed or not and then it will consider to perform render cycle
+
+Without Pure component
+In below example not pure component it blindly renders whenever the state updates
+class ImpureComponent extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      counter: 0
+    }
+    
+    // The value of Counter is updated to same value during continues interval
+    
+    setInterval(() => {
+      this.setState({
+        counter: 0
+      });
+    }, 1000);
+  }
+  
+  render() {
+    return <b>Counter Value: {this.state.counter}</b>
+  }
+}
+
+With PureComponent we can stop multiple renders when state doesn't changed
+In below example it won't perform render as counter value is not changing
+class ImpureComponent extends React.PureComponent {
+  constructor() {
+    super();
+    this.state = {
+      counter: 0
+    }
+    
+    // The value of Counter is updated to same value during continues interval
+    
+    setInterval(() => {
+      this.setState({
+        counter: 0
+      });
+    }, 1000);
+  }
+  
+  render() {
+    
+    // This function wont be re-rendered in case when the new state is same as previous
+    
+    return <b>Counter Value: {this.state.counter}</b>
+  }
+}
+
+Note:
+As it's shallow comparision.
+For primitive values it works straight forward.
+But if we deal with objects it consider to render based on reference.
+So we should not mutate the state instead we will update the reference when ever there is a need of state to be changed
+
+Example:
+// Mutating reference in Pure Component wont perform render as the reference is not changing
+class ShalloWCompareComponent extends React.PureComponent {
+  constructor() {
+    super();
+    this.state = {
+      userArray: [1, 2, 3, 4, 5]
+    }
+    
+    // The value of Counter is updated to same value during continues interval
+    
+    setInterval(() => {
+      this.setState({
+        userArray: userArray.push(6)
+      });
+    }, 1000);
+  }
+  
+  render() {
+    return <b>Array Length is: {this.state.userArray.length}</b>
+  }
+}
+
+// Immutability update ref then render will occur in Pure Component
+class ShalloWCompareComponent extends React.PureComponent {
+  constructor() {
+    super();
+    this.state = {
+      userArray: [1, 2, 3, 4, 5]
+    }
+    setInterval(() => {
+      
+      // Here we are creating the new Array Object during setState using "Spread" Operator
+      
+      this.setState({
+        userArray: [...this.state.userArray, 6]
+      });
+    }, 1000);
+  }
+  
+  render() {
+    return <b>Array Length is: {this.state.userArray.length}</b>
+  }
+}
+
+Edge Cases: But Pure Component will not work in all cases as it's shallow comparision 

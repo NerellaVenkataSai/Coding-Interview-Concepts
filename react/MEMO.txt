@@ -1,0 +1,7 @@
+Memo is similar to ShouldCompnentUpdate or Pure COmponent in class components
+
+It avoids rendering when the corresponding props didn't change
+
+import { memo } from 'React';
+
+const View = memo(({ name }) => `Hi, I'm ${name}`);

@@ -1,0 +1,36 @@
+Higher Order Component
+
+The Component takes component as paramerter and return enhanced component of it
+
+useCases:
+If multiple components need of same functionality. we can create HOC and place common logic in HOC.
+And pass that logic as prop to wrappedComponents under HOC
+
+const hoc = (WrappedComponent) => {
+
+    const NewComponent = () => {
+    //common logic
+
+    render() {
+        return (
+            <WrappedComponent logic={logic}/>
+        )
+    }
+    }
+
+    return NewComponent
+}
+
+const comp1 = () => {
+
+    const {logic} = props
+
+    render() {
+        return (
+            <div>{logic}</div>
+        )
+    }
+
+}
+
+export default hoc(comp1)

@@ -1,0 +1,20 @@
+const styles = {
+    font: {
+        size: {
+            value: '22',
+            unit: 'px'
+        },
+        weight: 'bold',
+        color: '#663300',
+        family: 'arial',
+        align: 'center'
+    }
+};
+
+const [style, setStyle] = useState(styling);
+...
+
+setStyle(prevStyle => ({
+        ...prevStyle,
+        font: { ...prevStyle.font, align: event.target.value }
+    }));
