@@ -22,6 +22,27 @@ const debounce = (fn, delay) => {
 
 // Debounce Example 2 react
 // https://dev.to/gabe_ragland/debouncing-with-react-hooks-jci
+/**
+ * 
+ * export default function useDebounce(value, delay) {
+  // State and setters for debounced value
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(
+    () => {
+      const handler = setTimeout(() => {
+        setDebouncedValue(value);
+      }, delay);
+
+      return () => {
+        clearTimeout(handler);
+      };
+    },[value] 
+  );
+
+  return debouncedValue;
+} 
+ */
 
 // Trottle example
 // In below example throttle will allow click but it won't call function until it passes delay
