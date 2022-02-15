@@ -1,3 +1,7 @@
+Grid is made for two-dimensional layout while Flexbox is for one. 
+This means Flexbox can work on either row or columns at a time, 
+but Grids can work on both. Flexbox, gives you more flexibility while working on either element (row or column).
+
 // arrange images in 3 column grid despite of size
 .grid-container {
   display: grid; or display: inline-grid
