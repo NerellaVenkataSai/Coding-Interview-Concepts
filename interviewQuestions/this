@@ -1,0 +1,33 @@
+1.
+var length = 10;
+function fn() {
+	console.log(this.length);
+}
+
+var obj = {
+  length: 5,
+  method: function(fn) {
+    fn();
+    arguments[0]();
+  }
+};
+
+obj.method(fn, 1);
+
+2.
+
+setTimeout(() => console.log("A"), 1000);
+
+setTimeout(() => console.log("B"), 0);
+
+Promise.resolve()
+  .then(() => console.log("C"));
+
+Promise.resolve()
+  .then(() => setTimeout(() => console.log("D"), 0));
+
+console.log("E");
+
+
+//E C B D A
+
