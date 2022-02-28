@@ -5,6 +5,7 @@ function fn() {
 }
 
 var obj = {
+
   length: 5,
   method: function(fn) {
     fn();
@@ -30,4 +31,20 @@ console.log("E");
 
 
 //E C B D A
+
+3.
+let x= {}, y = {name:"Ronny"},
+z = {name:"John"};
+
+x[y] = {name:"Vivek"};
+x[z] = {name:"Akki"};
+
+console.log(x[y])
+
+x[y] = {name: 'abc'}
+
+console.log(x)
+
+4. Type COnversions
+https://www.programiz.com/javascript/type-conversion
 
