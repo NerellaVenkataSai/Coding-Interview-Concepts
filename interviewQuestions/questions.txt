@@ -1,0 +1,93 @@
+1.
+var length = 10;
+function fn() {
+	console.log(this.length);
+}
+
+var obj = {
+
+  length: 5,
+  method: function(fn) {
+    fn();
+    arguments[0]();
+  }
+};
+
+obj.method(fn, 1);
+
+2.
+
+setTimeout(() => console.log("A"), 1000);
+
+setTimeout(() => console.log("B"), 0);
+
+Promise.resolve()
+  .then(() => console.log("C"));
+
+Promise.resolve()
+  .then(() => setTimeout(() => console.log("D"), 0));
+
+console.log("E");
+
+
+//E C B D A
+
+3.
+let x= {}, y = {name:"Ronny"},
+z = {name:"John"};
+
+x[y] = {name:"Vivek"};
+x[z] = {name:"Akki"};
+
+console.log(x[y])
+
+x[y] = {name: 'abc'}
+
+console.log(x)
+
+4. Type of COnversions
+https://www.programiz.com/javascript/type-conversion
+
+
+5. 
+function sample() {
+	const x = [1] == [1];
+	const y = [1] === [1];
+        console.log(x, y);
+}
+
+
+6.
+let i;
+for (i = 0; i < 3; i++) {
+  const log = () => {
+    console.log(i); // 3 3 3
+  }
+  // as the setTimeout gets scope first from global scope where i value is 3 
+  setTimeout(log, 100);
+  // here i sill get scope from block scope
+  console.log(i); // 0 1 2
+}
+-----------------------
+for (let i = 0; i < 3; i++) {
+  const log = () => {
+    console.log(i); // 0 1 2
+  }
+  // as the setTimeout gets scope first from global scope and there is no i in global scope 
+  // and it gets from block scope which 0 1 2
+  setTimeout(log, 100);
+  // here i sill get scope from block scope
+  console.log(i); // 0 1 2
+}
+
+
+7.
+let x = function() {
+  {
+		let i = "hello";
+		var j = "world";
+	}
+	console.log(i);
+	console.log(j);
+}
+
