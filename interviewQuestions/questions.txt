@@ -91,3 +91,44 @@ let x = function() {
 	console.log(j);
 }
 
+8. // Print in for after certain delays
+const nP = (limit) =>
+new Promise((res, rej) => {
+    setTimeout(() => {
+        res('hello')
+    }, limit)
+})
+
+for(let i=0; i<3; i++) {
+   (async() => {
+    const r = await nP(1000*i);
+    console.log(r)
+   })()
+}
+
+for(let i=0; i<3; i++) {
+    setTimeout(() => {console.log(i)}, i*1000)
+}
+
+9. resolve n no.of promises arr
+let p1 = Promise.resolve(1);
+let p2 = new Promise((res,rej) => res(2))
+let p3 = Promise.resolve(3);
+
+p2.then(res => {console.log(res)})
+
+function ps(arr) {
+    if(arr.length === 1) {
+        arr[0].then(p => {
+            console.log(p)
+        })
+        return;
+    }
+    arr[0].then(p => {
+        console.log(p)
+        ps(arr.slice(1))
+    })
+}
+
+ps([p1,p2,p3])
+
