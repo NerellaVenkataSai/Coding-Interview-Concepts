@@ -10,15 +10,25 @@
 
 //Debounce Example plain JS
 
+
+const loggerFunction = (a, b) => {
+  console.log(a, b)
+}
+
+// will be called only once after certain pause of action
 const debounce = (fn, delay) => {
     let id;
     return (...args) => {
         if(id) clearTimeout(id)
         id = setTimeout(() => {
-            fn(args)
+            fn(...args)
         }, delay)
     }
 }
+
+const debouncedFunction = debounce(loggerFunction, 500)
+
+window.addEventListener('resize', () => debouncedFunction('hello', 'world'))
 
 // Debounce Example 2 react
 // https://dev.to/gabe_ragland/debouncing-with-react-hooks-jci
@@ -45,18 +55,25 @@ const debounce = (fn, delay) => {
  */
 
 // Trottle example
-// In below example throttle will allow click but it won't call function until it passes delay
+// Functions will be called in certain intervals of time
+// In below example throttle will call function on resize only after passing delay in intervals
+// execute in browser console
 
-const throttle = (fn, delay) => {
-    let lastTime = 0;
-    let id = 0;
-    return (...args) => {
-        id++;
-        let now = new Date().getTime()
-        if(now - lastTime < delay) return;
-        console.log(id)
-        lastTime = now
-        fn(...args)
-    }
+const throttle = (fn, limit) => {
+  let flag = true;
+  return function(...args) {
+      if(flag) {
+          fn(...args);
+          flag=false;
+          setTimeout(() => {
+              flag = true
+          }, limit)
+      }
+  }
 }
+
+const betterLoggerFunction = throttle(loggerFunction, 500)
+
+window.addEventListener('resize', () => betterLoggerFunction('hello', 'world'))
+
 
