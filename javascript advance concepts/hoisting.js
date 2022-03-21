@@ -1,6 +1,7 @@
 /**
  *  Javascript Hoisting
  * 
+ *  https://thejs.dev/jmitchell/what-is-hoisting-and-how-it-works-in-javascript-e1e
  *  Moves all variable and function declarations to the top(in memory)
  * 
  *  And 
