@@ -1,0 +1,23 @@
+As the name implies, ReactDOM is the glue between React and the DOM. Often,
+ you will only use it for one single thing: mounting with ReactDOM.render(). 
+ Another useful feature of ReactDOM is ReactDOM.findDOMNode() 
+ which you can use to gain direct access to a DOM element. 
+ (Something you should use sparingly in React apps, but it can be necessary.) 
+ If your app is "isomorphic", you would also use ReactDOM.renderToString() 
+ in your back-end code.
+
+ For everything else, there's React. 
+use React to define and create your elements, 
+for lifecycle hooks, etc. i.e. the guts of a React application.
+
+The reason React and ReactDOM were split into two libraries 
+was due to the arrival of React Native. 
+React contains functionality utilised in web and mobile apps. 
+ReactDOM functionality is utilised only in web apps
+
+As we look at packages like react-native, react-art, react-canvas, and react-three, 
+it's become clear that the beauty and essence of React has nothing to do with browsers 
+or the DOM.
+
+To make this more clear and to make it easier to build more environments that React 
+can render to, we're splitting the main react package into two: react and react-dom.
