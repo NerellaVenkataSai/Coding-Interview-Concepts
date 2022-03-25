@@ -1,4 +1,5 @@
 /**
+ *  same approach can be used for merge n sorted lists
  *  merge two sorted array using merge sort 
  *  i < j --> push i and i++; i > j --> push j and j++ ; i===j push i or j and i or j ++
  * 
