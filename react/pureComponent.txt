@@ -124,3 +124,16 @@ class ShalloWCompareComponent extends React.PureComponent {
 }
 
 Edge Cases: But Pure Component will not work in all cases as it's shallow comparision 
+
+
+using useMemo for shouldComponentUpdate
+import React, { useMemo } from 'react';
+
+function ContactList({ title, contacts }) {
+  const listComponent = useMemo(() => {
+    return <List title={title} data={contacts} />;
+  }, [contacts]);
+  //  ^^^^^^^^ `props.contacts` dependency
+  
+  return listComponent;
+}
