@@ -1,0 +1,180 @@
+import "./styles.css";
+import { useState } from "react";
+
+const size = [
+  { name: "Lean Series", id: 1 },
+  { name: "Twist Series", id: 2 }
+];
+
+const styles = [
+  {
+    name: "Android (V8)",
+    id: 11,
+    sizeandc: [
+      {
+        id: 2,
+        color: [{ id: 47 }]
+      }
+    ]
+  },
+  {
+    name: "Type C",
+    id: 12,
+    sizeandc: [
+      {
+        id: 1,
+        color: [{ id: 45 }]
+      },
+      {
+        id: 2,
+        color: [{ id: 46 }]
+      }
+    ]
+  },
+  {
+    name: "IOS",
+    id: 13,
+    sizeandc: [
+      {
+        id: 2,
+        color: [{ id: 46 }]
+      }
+    ]
+  }
+];
+
+const colors = [
+  {
+    name: "red",
+    id: 45,
+    style: [
+      {
+        id: 12
+      }
+    ]
+  },
+  {
+    name: "grey",
+    id: 46,
+    style: [
+      {
+        id: 12
+      }
+    ]
+  },
+  {
+    name: "black",
+    id: 47,
+    style: [
+      {
+        id: 11
+      }
+    ]
+  }
+];
+
+export default function App() {
+  const [selectedSize, setSelectedSize] = useState();
+  const [selectedStyle, setSelectedStyle] = useState();
+  const [selectedColor, setSelectedColor] = useState();
+
+  const getStylesAndColorsOnSize = (obj) => {
+    setSelectedSize(obj.id);
+    console.log(styles.length);
+    let defaultRun = true;
+    if (selectedStyle) {
+      const cTemp = styles
+        .filter((o) => o.id === selectedStyle)[0]
+        ?.sizeandc.filter((s) => s.id === obj.id)[0]?.color[0].id;
+      console.log("cTemp", cTemp);
+      if (cTemp) {
+        setSelectedColor(cTemp);
+        defaultRun = false;
+      } else return;
+    }
+    if (defaultRun)
+      for (let i = 0; i < styles.length; i++) {
+        const styleAndColor = styles[i].sizeandc.filter((o) => o.id === obj.id);
+        console.log(styleAndColor);
+        if (styleAndColor.length) {
+          setSelectedStyle(styles[i].id);
+          setSelectedColor(styleAndColor[0].color[0].id);
+          break;
+        }
+      }
+  };
+
+  const getSizeAndColorsOnStyle = (styObj) => {
+    setSelectedStyle(styObj.id);
+    const preSize =
+      (selectedSize &&
+        styObj.sizeandc.filter((o) => o.id === selectedSize)[0]) ||
+      styObj.sizeandc[0];
+    const preColor =
+      (selectedColor &&
+        preSize.color.filter((s) => s.id === selectedColor)[0]) ||
+      preSize.color[0];
+    console.log("preSize", preSize, preColor);
+    setSelectedSize(preSize.id);
+    setSelectedColor(preColor.id);
+  };
+
+  const getStyleAndSizeOnColor = (clrObj) => {
+    setSelectedColor(clrObj.id);
+    const preStyle =
+      (selectedStyle &&
+        clrObj.style.filter((o) => o.id === selectedStyle)[0]) ||
+      clrObj.style[0];
+
+    setSelectedStyle(preStyle.id);
+
+    const styleObj = styles.filter((s) => s.id === preStyle.id)[0];
+
+    let preSize =
+      selectedSize &&
+      styleObj.sizeandc.filter((si) => si.id === selectedSize)[0];
+    let sizeHaveColor =
+      preSize && preSize.color.filter((c) => c.id === clrObj.id)[0];
+    if (!sizeHaveColor) {
+      setSelectedSize(styleObj.sizeandc[0].id);
+    }
+  };
+
+  console.log(selectedSize, selectedStyle, selectedColor);
+  return (
+    <div className="App">
+      <div className="sizes">
+        {size.map((s) => (
+          <button
+            onClick={() => getStylesAndColorsOnSize(s)}
+            className={s.id === selectedSize ? "active" : "non-active"}
+          >
+            {s.name}
+          </button>
+        ))}
+      </div>
+      <br />
+      <div className="styles">
+        {styles.map((s) => (
+          <button
+            onClick={() => getSizeAndColorsOnStyle(s)}
+            className={s.id === selectedStyle ? "active" : "non-active"}
+          >
+            {s.name}
+          </button>
+        ))}
+      </div>
+      <br />
+      <div className="colors">
+        {colors.map((s) => (
+          <button
+            onClick={() => getStyleAndSizeOnColor(s)}
+            className={s.id === selectedColor ? "active" : "non-active"}
+          >
+            {s.name}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
