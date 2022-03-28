@@ -1,0 +1,6 @@
+Ambient declarations are a way of telling the TypeScript compiler that the actual 
+source code exists elsewhere. When you are consuming a bunch of third party js libraries 
+like jquery/angularjs/nodejs you can’t rewrite it in TypeScript. 
+Ensuring typesafety and intellisense while using these libraries 
+will be challenging for a TypeScript programmer. 
+Ambient declarations help to seamlessly integrate other js libraries into TypeScript.
