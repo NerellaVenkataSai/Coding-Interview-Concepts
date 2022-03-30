@@ -1,5 +1,7 @@
 /**
- *  Max subarray sum in given array
+ *  Max and Min subarray sum in given array 
+ * 
+ *  Note: For min reverse < to > it will return min sum of subarray in array 
  * 
  *  [-2,-3,4,-1,-2,1,5,-3] 
  * 
