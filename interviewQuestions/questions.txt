@@ -132,3 +132,28 @@ function ps(arr) {
 
 ps([p1,p2,p3])
 
+10. print numbers at certain intervals
+
+function resolver(i) {
+	return new Promise((res, rej) => {
+   		setTimeout(() => {
+        res(i)
+      }, 1000)	
+  })
+}
+
+function rec(count, i=1) {
+  if(i === count) {
+         resolver(i).then(resp => {
+         console.log(resp)
+       })
+     return;
+  	}
+  resolver(i).then(resp => {
+  	console.log(resp)
+    rec(count, i+1)
+  })
+}
+
+rec(10)
+
