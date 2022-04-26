@@ -43,7 +43,7 @@ function TreeNode(val, left, right) {
         const mathStarightSum = Math.max(Math.max(left, right)+ node.val, node.val); // case1
         const mathSumRoot = Math.max(mathStarightSum, left+right+node.val); //case 2
         result = Math.max(mathSumRoot, result); // case 3
-  
+        console.log('mathStarightSum', mathStarightSum)
         return mathStarightSum
       }
   

@@ -48,10 +48,10 @@ function squaresOnSortedArray(arr) {
         break;  
     }
   }
-  console.log(result)
+  // console.log(result)
   return result;
 }
 
 console.log(squaresOnSortedArray([-7,-3,2,3,11]))
 
-console.log(Array(4).fill(0))
+// console.log(Array(4).fill(0))
