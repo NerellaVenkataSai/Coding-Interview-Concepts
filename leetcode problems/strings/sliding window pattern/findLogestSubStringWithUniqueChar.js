@@ -43,3 +43,20 @@ console.log(findLongestSubstring("rithmschool"))
  *   7th
  *   longest =(longest, 7 - 4 + 1) = 7; start=4:
  */
+
+ function long(str) {
+  let strmap = {};
+  let longest = 0;
+  for (let ch of str) {
+  if(strmap[ch]){
+      strmap[ch]+=1
+      longest = Math.max(longest, strmap[ch])
+  } else {
+      strmap[ch]=1
+  }
+
+  }
+  console.log(strmap, longest)
+}
+
+long('rtttyuuuuui')
