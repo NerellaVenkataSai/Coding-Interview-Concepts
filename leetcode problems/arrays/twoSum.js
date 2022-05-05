@@ -22,3 +22,13 @@ const twoSum = (array, target) => {
 }
 
 console.log(twoSum([3,3], 6))
+
+function tsum(nums, target) {
+    var hash = {};
+    var len = nums.length;
+    for (var i = 0; i < len; i++) {
+      if (nums[i] in hash) return [hash[nums[i]], i];
+      hash[target - nums[i]] = i
+    }
+    return [-1, -1];
+  };
