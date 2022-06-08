@@ -1,1 +1,2 @@
 symbol                                           https://medium.com/intrinsic-blog/javascript-symbols-but-why-6b02768f4a5c
+cache-control                                    https://www.imperva.com/learn/performance/cache-control/
