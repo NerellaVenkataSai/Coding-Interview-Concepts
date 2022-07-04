@@ -25,3 +25,5 @@
    worker.addEventListener('message', workerMessaged);
    worker.postMessage('Other'); // This will trigger webWorker to process some logic in other thread
  */
+
+   https://www.freecodecamp.org/news/how-webworkers-work-in-javascript-with-example/#:~:text=Common%20examples%20of%20web%20workers,huge%20files%20from%20the%20server
