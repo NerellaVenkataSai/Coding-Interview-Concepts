@@ -51,7 +51,7 @@
 // Driver code
  
     // stock prices on consecutive days
-    var price = [ 100, 180, 260, 310, 40, 535, 695, 80, 900, 100, 1000, 1001, 1006, 80  ];
+    var price = [ 2, 30, 15, 10, 8, 25, 80 ];
     var n = price.length;
 
     // function call

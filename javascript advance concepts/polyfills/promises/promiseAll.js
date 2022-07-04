@@ -16,7 +16,7 @@ const promise3 = new Promise((res,rej) => {
     setTimeout(() => {res('setTimeout')}, 1000)
 })
 
-const values = Promise.all([promise1, promise2, promise3]).then(values => console.log(values))
+// const values = Promise.all([promise1, promise2, promise3]).then(values => console.log(values))
 
 // polyfill
 
@@ -30,7 +30,7 @@ Promise.mypromise = function pAll(promisesArr) {
             Promise.resolve(promiseValue).then((resp) => {
                 results[completed] = resp;
                 completed++
-
+                console.log(resp)
                 if(completed === promisesArr.length) {
                     // console.log(results)
                     resolve(results)
@@ -40,9 +40,9 @@ Promise.mypromise = function pAll(promisesArr) {
     })
 }
 
-Promise.mypromise([promise1, promise2, promise3]).then(values => console.log('in poly',values))
+// Promise.mypromise([promise1, promise2, promise3]).then(values => console.log('in poly',values))
 
-Promise.mypromise([promise1, promise2, promise3, Promise.reject('bar')])
+Promise.mypromise([Promise.reject('bar'), promise1, promise2, promise3])
                                             .then(values => console.log('in poly',values))
                                             .catch(err => console.log('in poly reject', err))
 

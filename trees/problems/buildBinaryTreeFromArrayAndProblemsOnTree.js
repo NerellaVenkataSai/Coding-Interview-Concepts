@@ -31,40 +31,41 @@ console.log(buildTree1([-10,9,20,null,null,15,7]))
 
 // cousins in binary tree https://leetcode.com/problems/cousins-in-binary-tree/
 
-function isCousins(arr, x, y) {
-  const tree = buildTree1(arr)
-  console.log(tree)
-  if(tree.val === x || tree.val === y) {
-      return false;
+const isCousins = (root, x, y) => {
+  let results = new Map();
+  let level = 0;
+  
+  let stack = [[root, level]];
+  
+  if (root.val === x || root.val === y) return false;
+  
+  while (stack.length) {
+      let data = stack.pop();
+      let current = data[0];
+      level = data[1];
+      
+      if (current.left) {
+          if (current.left.val === x) results.set(x, { parent: current.val, level: level + 1 });
+          if (current.left.val === y) results.set(y, { parent: current.val, level: level + 1 });
+          stack.push([current.left, level + 1]);
+      }
+      
+      if (current.right) {
+          if (current.right.val === x) results.set(x, { parent: current.val, level: level + 1 });
+          if (current.right.val === y) results.set(y, { parent: current.val, level: level + 1 });
+          stack.push([current.right, level + 1]);
+      }
+      
+      ++level;
   }
-  let parent = -1;
-  function caluclateCousins(root, parent, value, height) {
-     if(!root) {
-         return 0;
-     }
-     if(root.val === value) {
-         return {height, parent};
-     }
-
-     parent = root.val
-     console.log(parent)
-     let left = caluclateCousins(root.left, parent, value, height + 1)
-     console.log(parent, left)
-     if(left)
-      return left;
-     parent = root.val;
-     let right = caluclateCousins(root.right, parent, value, height + 1 )
-     console.log(parent, right)
-     return right
-
-  }
-
-  console.log(caluclateCousins(tree, parent, x, 0))
-  console.log(parent)
-
+  
+  if (results.get(x).parent !== results.get(y).parent &&
+      results.get(x).level === results.get(y).level) return true;
+  
+  return false;
 }
 
-console.log(isCousins([1,2,3,null,4,null,5], 4, 5))
+console.log(isCousins(buildTree1([1,2,3,null,4,null,5]), 4, 5))
 
 
 // Q: https://leetcode.com/problems/binary-tree-maximum-path-sum/

@@ -15,6 +15,9 @@ var x = 5
 var x1
 console.log(x1)
 
+console.log(foo); // prints 'undefined'
+var foo = "bar";
+
 // let and const are not hoisted
 
 // console.log(y)

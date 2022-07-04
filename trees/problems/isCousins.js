@@ -58,6 +58,43 @@
   }
   
   console.log(isCousins([1,2,3,null,4,null,5], 4, 5))
+
+  
+const isCousins = (root, x, y) => {
+  let results = new Map();
+  let level = 0;
+  
+  let stack = [[root, level]];
+  
+  if (root.val === x || root.val === y) return false;
+  
+  while (stack.length) {
+      let data = stack.pop();
+      let current = data[0];
+      level = data[1];
+      
+      if (current.left) {
+          if (current.left.val === x) results.set(x, { parent: current.val, level: level + 1 });
+          if (current.left.val === y) results.set(y, { parent: current.val, level: level + 1 });
+          stack.push([current.left, level + 1]);
+      }
+      
+      if (current.right) {
+          if (current.right.val === x) results.set(x, { parent: current.val, level: level + 1 });
+          if (current.right.val === y) results.set(y, { parent: current.val, level: level + 1 });
+          stack.push([current.right, level + 1]);
+      }
+      
+      ++level;
+  }
+  
+  if (results.get(x).parent !== results.get(y).parent &&
+      results.get(x).level === results.get(y).level) return true;
+  
+  return false;
+}
+
+console.log(isCousins(buildTree1([1,2,3,null,4,null,5]), 4, 5))
   
   
   
