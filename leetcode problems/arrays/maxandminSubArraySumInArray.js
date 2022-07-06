@@ -43,6 +43,24 @@
  *   
  *   
  */
+let arr =     [-2,-3,4,-1,-2,1,5,-3] 
+
+ let maxEndingHere = 0;
+    let maxSoFar = arr[0];
+  
+    for(let i of arr) {
+       maxEndingHere = i + maxEndingHere;
+  
+       if(maxEndingHere < i) {
+           maxEndingHere = i
+       } 
+       if(maxSoFar < maxEndingHere) {
+           maxSoFar = maxEndingHere
+       }
+    }
+
+console.log(maxEndingHere, maxSoFar)
+  
 
 
 

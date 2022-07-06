@@ -45,6 +45,7 @@ function SumOfKsubArray(arr , k)
 
 	// Remove all elements which are out of this
 	// window
+	console.log(S,G)
 	while ( S.length != 0 && S[0] <= i - k)
 		S.shift(0);
 	while ( G.length != 0 && G[0] <= i - k)
@@ -63,6 +64,8 @@ function SumOfKsubArray(arr , k)
 	// Add current element at rear of both deque
 	G.push(i);
 	S.push(i);
+	console.log(S,G)
+
 	}
 
 	// Sum of minimum and maximum element of last window
@@ -72,6 +75,6 @@ function SumOfKsubArray(arr , k)
 
 // Driver code
 
-	let arr = [2, 5, -1, 7, -3, -1, -2];
-	let k = 3;
+	let arr = [-2,-3,4,-1,-2,1,5,-3];
+	let k = 2;
 	console.log(SumOfKsubArray(arr, k));
