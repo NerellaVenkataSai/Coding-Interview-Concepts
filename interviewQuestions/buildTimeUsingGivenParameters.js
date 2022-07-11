@@ -19,30 +19,24 @@
  *
  */
 
-function solution(A, B, C, D) {
+ function solution(A, B, C, D) {
   const arr = [A, B, C, D];
   let arr2 = [];
   for (let i = 0; i < arr.length; i++) {
     for (let j = i + 1; j <= arr.length; j++) {
       const num = arr[i] + "" + arr[j];
+      const num2 = arr[j] + "" + arr[i];
       if (num < 59 && arr2.indexOf(num) === -1) {
         arr2.push(num);
       }
-    }
-  }
-  for (let i = arr.length - 1; i > 0; i--) {
-    for (let j = i; j >= 0; j--) {
-      const num = arr[i] + "" + arr[j];
-      console.log(num);
-      if (num < 59 && arr2.indexOf(num) === -1) {
-        arr2.push(num);
+      if (num2 < 59 && arr2.indexOf(num2) === -1) {
+        arr2.push(num2);
       }
     }
   }
-  console.log(arr2);
   const hrs = arr2.filter((h) => h <= 23);
   const min = arr2.filter((m) => m <= 59);
-  console.log(hrs, min);
+  // console.log(hrs, min);
   let count = 0;
   for (let h = hrs.length - 1; h >= 0; h--) {
     for (let m = min.length - 1; m >= 0; m--) {
@@ -50,7 +44,7 @@ function solution(A, B, C, D) {
         (hrs[h] + min[m])
           .split("")
           .sort((a, b) => a - b)
-          .join(",") == arr.sort((a, b) => a - b).join(",")
+          .join("") == arr.sort((a, b) => a - b).join("")
       ) {
         count++;
       }
