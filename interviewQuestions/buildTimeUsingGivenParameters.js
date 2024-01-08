@@ -56,3 +56,48 @@
  solution(1,8,3,2); // 6
  solution(2,3,3,2); // 3
  solution(6,2,4,7); // 0
+
+
+// using recursive
+function DigitalClock() {
+   function main(args) {
+    console.log(solution(1, 8, 3, 2));
+  }
+  function solution(A, B, C, D) {
+    let digits = [A, B, C, D];
+    let times = new Set();
+    permuteAndCollectTimes(digits, 0, times);
+    return times.size;
+  }
+   function permuteAndCollectTimes(array, start, times) {
+     // debugger;
+    if (start === array.length) {
+      checkAndAddTime(array, times);
+    }
+    console.log(array, start);
+    for (let i = start; i < array.length; i++) {
+      swap(array, start, i, 'first');
+      permuteAndCollectTimes(array, start + 1, times);
+      swap(array, start, i, 'second');
+    }
+  }
+   function swap(array, i, j, pos) {
+    console.log(pos, i, j);
+    let temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+   function checkAndAddTime(array, times) {
+    let hour = array[0] * 10 + array[1];
+    let minute = array[2] * 10 + array[3];
+    if (hour < 24 && minute < 60) {
+      times.add(`${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`);
+    }
+  }
+  return main;
+}
+
+var m = DigitalClock();
+m();
+
+
